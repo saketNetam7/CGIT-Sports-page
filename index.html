@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CGIT Sports Fest</title>
+    <!-- Google Font for the unique CGIT heading style (needs internet) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- All styling is in style.css -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="progress"></div>
+
+    <!-- ============ NAVIGATION BAR ============ -->
+    <nav id="nav">
+      <a href="#/" class="logo">CGIT SPORTS</a>
+      <div class="nav-links">
+        <a href="#/" class="hide-m">Home</a>
+        <a href="#/calendar" class="hide-m">Schedule</a>
+        <!-- Registration button (top right) -->
+        <a href="#/register" class="btn">Registration</a>
+      </div>
+    </nav>
+
+    <!-- ================================================================
+     PAGE 1 : HOME
+================================================================ -->
+    <div class="page active" id="page-home" style="padding: 0">
+      <!-- Hero: Ronaldo, Neymar, Messi background + CGIT heading -->
+      <header class="hero">
+        <div class="bg" id="heroBg">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="hero-text">
+          <h1 class="cgit">CGIT</h1>
+          <div class="full-name">
+            CHHATTISGARH INSTITUTE OF TECHNOLOGY, BILASPUR
+          </div>
+          <p class="tagline">Annual Sports Fest – Play. Compete. Win.</p>
+        </div>
+        <div class="scroll-hint">⬇ Scroll</div>
+      </header>
+
+      <!-- Numbers (count up when visible) -->
+      <section class="block">
+        <h2 class="reveal">Game on, campus</h2>
+        <div class="grid">
+          <div class="card reveal from-left">
+            <div class="big" data-count="8">0</div>
+            Sports to play
+          </div>
+          <div class="card reveal">
+            <div class="big" data-count="500">0</div>
+            Students expected
+          </div>
+          <div class="card reveal from-right">
+            <div class="big" data-count="12">0</div>
+            Days of matches
+          </div>
+        </div>
+      </section>
+
+      <!-- Sports list (same icons as footer) -->
+      <section class="block">
+        <h2 class="reveal">Pick your sport</h2>
+        <div class="grid" id="sportGrid"></div>
+        <!-- filled by JavaScript -->
+      </section>
+
+      <!-- Next matches taken from the SCHEDULE list -->
+      <section class="block">
+        <h2 class="reveal">Coming up next</h2>
+        <div class="grid" id="upcoming"></div>
+        <!-- filled by JavaScript -->
+      </section>
+    </div>
+
+    <!-- ================================================================
+     PAGE 2 : STUDENT REGISTRATION
+================================================================ -->
+    <div class="page" id="page-register">
+      <h2 class="reveal">Student registration</h2>
+      <form id="regForm">
+        <label>Full name<input id="rName" required /></label>
+        <label
+          >Student Gmail ID<input
+            id="rEmail"
+            type="email"
+            placeholder="yourname@gmail.com"
+            required
+        /></label>
+        <label
+          >Year
+          <select id="rYear" required>
+            <option value="">Select</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+          </select></label
+        >
+        <label
+          >Department
+          <select id="rDept" required>
+            <option value="">Select</option>
+            <option>Computer Science</option>
+            <option>Mechanical</option>
+            <option>Electrical</option>
+            <option>Civil</option>
+            <option>Electronics</option>
+            <option>Information Technology</option>
+          </select></label
+        >
+        <label
+          >Course
+          <select id="rCourse" required>
+            <option value="">Select</option>
+            <option>B.Tech</option>
+            <option>M.Tech</option>
+            <option>Diploma</option>
+          </select></label
+        >
+        <label
+          >Semester
+          <select id="rSem" required>
+            <option value="">Select</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+          </select></label
+        >
+        <button class="btn" type="submit">Register</button>
+        <div class="msg" id="regMsg"></div>
+      </form>
+    </div>
+
+    <!-- ================================================================
+     PAGE 3 : SPORT PARTICIPATION (same page reused for every sport)
+================================================================ -->
+    <div class="page" id="page-sport">
+      <h2 id="sportTitle"></h2>
+      <form id="joinForm">
+        <label
+          >Registered Gmail ID<input
+            id="jEmail"
+            type="email"
+            placeholder="yourname@gmail.com"
+            required
+        /></label>
+        <label
+          >Playing role / category
+          <select id="jRole">
+            <option>Player</option>
+            <option>Team captain</option>
+            <option>Reserve player</option>
+          </select></label
+        >
+        <button class="btn" type="submit">Apply to participate</button>
+        <div class="msg" id="joinMsg"></div>
+      </form>
+    </div>
+
+    <!-- ================================================================
+     PAGE 4 : CALENDAR / SCHEDULE
+================================================================ -->
+    <div class="page" id="page-calendar">
+      <h2>Sports calendar</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Sport</th>
+              <th>Venue</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ FOOTER with sport icons ============ -->
+    <footer>
+      <div class="footer-icons" id="footerIcons"></div>
+      <!-- filled by JavaScript -->
+      <p>© 2026 Chhattisgarh Institute of Technology, Bilaspur</p>
+    </footer>
+
+    <!-- All JavaScript is in script.js -->
+    <script src="script.js"></script>
+  </body>
+</html>
